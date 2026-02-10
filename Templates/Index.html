@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CARSPECX | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="{{ url_for('static', filename='images/CARSPECX.png') }}" class="logo">
+    <nav>
+        <a href="/">Home</a>
+        <a href="/finder">Car Finder</a>
+        <a href="/recommend">Recommend</a>
+        <a href="/compare_select">Compare</a>
+        <a href="/emi">EMI</a>
+        <a href="/admin">Admin</a>
+    </nav>
+</header>
+
+<h1 class="title">Explore Cars</h1>
+
+<div class="car-grid">
+    {% for car in cars %}
+    <div class="car-card">
+        <img src="{{ url_for('static', filename='images/' + car.image) }}">
+        <h3>{{ car.car_name }}</h3>
+        <p><b>Brand:</b> {{ car.brand }}</p>
+        <p><b>Price:</b> ₹{{ car.price }}</p>
+        <p><b>Fuel:</b> {{ car.fuel_type }}</p>
+        <p><b>Transmission:</b> {{ car.transmission }}</p>
+        <a href="/details/{{ car.id }}" class="btn">View Details</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
