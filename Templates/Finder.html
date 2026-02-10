@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Finder | CARSPECX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="{{ url_for('static', filename='images/CARSPECX.png') }}" class="logo">
+    <nav>
+        <a href="/">Home</a>
+        <a href="/finder">Car Finder</a>
+        <a href="/recommend">Recommend</a>
+        <a href="/compare_select">Compare</a>
+        <a href="/emi">EMI</a>
+        <a href="/admin">Admin</a>
+    </nav>
+</header>
+
+<h2 class="title">Find Your Car</h2>
+
+<form method="POST" class="filter-form">
+    <select name="brand">
+        <option value="">Select Brand</option>
+        {% for b in brands %}
+        <option value="{{ b }}">{{ b }}</option>
+        {% endfor %}
+    </select>
+
+    <select name="fuel">
+        <option value="">Fuel Type</option>
+        <option>Petrol</option>
+        <option>Diesel</option>
+        <option>Electric</option>
+    </select>
+
+    <select name="transmission">
+        <option value="">Transmission</option>
+        <option>Manual</option>
+        <option>Automatic</option>
+    </select>
+
+    <input type="number" name="min_price" placeholder="Min Price">
+    <input type="number" name="max_price" placeholder="Max Price">
+
+    <button type="submit">Search</button>
+</form>
+
+<div class="car-grid">
+    {% for car in cars %}
+    <div class="car-card">
+        <img src="{{ url_for('static', filename='images/' + car.image) }}">
+        <h3>{{ car.car_name }}</h3>
+        <p>{{ car.brand }}</p>
+        <p>₹{{ car.price }}</p>
+        <a href="/details/{{ car.id }}" class="btn">View</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
