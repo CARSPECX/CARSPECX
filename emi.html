@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI Calculator | CARSPECX</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="static/images/CARSPECX.png" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="finder.html">Car Finder</a>
+        <a href="recommend.html">Recommend</a>
+        <a href="compare.html">Compare</a>
+        <a href="emi.html">EMI</a>
+    </nav>
+</header>
+
+<h2 class="title">EMI Calculator</h2>
+
+<div class="filter-form">
+    <input type="number" id="price" placeholder="Car Price">
+    <input type="number" id="rate" placeholder="Interest Rate (%)">
+    <input type="number" id="years" placeholder="Loan Tenure (Years)">
+    <button onclick="calcEMI()">Calculate EMI</button>
+</div>
+
+<h3 class="title" id="result"></h3>
+
+<script>
+function calcEMI(){
+    let P = document.getElementById("price").value;
+    let R = document.getElementById("rate").value / 12 / 100;
+    let N = document.getElementById("years").value * 12;
+
+    let emi = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+    document.getElementById("result").innerText = "Monthly EMI: ₹" + emi.toFixed(2);
+}
+</script>
+
+</body>
+</html>
