@@ -24,9 +24,10 @@ body {
 }
 
 .navbar nav a {
-    font-family: "Brush Script MT", cursive;
-    font-size: 20px;
-    letter-spacing: 1px;
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;
+    font-size: 14px;
 }
 
 .title {
