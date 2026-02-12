@@ -101,6 +101,11 @@ body {
     background: #eee;
 }
 
+.details-table th,
+.details-table td {
+    text-transform: uppercase;
+}
+
 @media (max-width: 600px) {
     .navbar {
         justify-content: center;
