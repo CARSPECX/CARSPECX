@@ -21,7 +21,9 @@
 
 <h2 class="title">Car Specifications</h2>
 
-<table class="details-table" id="detailsTable"></table>
+<div style="overflow-x:auto;">
+  <table class="details-table" id="detailsTable"></table>
+</div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -38,7 +40,7 @@ fetch("data/cars.json")
     for (let key in car) {
         // Use uppercase IMAGE to match JSON, and exclude ID
         if (key !== "IMAGE" && key !== "ID") {
-            html += `<tr><th>${key.replace(/_/g,' ')}</th><td>${car[key]}</td></tr>`;
+            html += `<tr><th>${key.replace(/_/g,' ')}</th><td>${key === "PRICE" ? formatPrice(car[key]) : car[key]}</td></tr>`;
         }
     }
     document.getElementById("detailsTable").innerHTML = html;
