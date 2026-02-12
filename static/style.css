@@ -110,3 +110,26 @@ body {
         justify-content: center;
     }
 }
+/* INTRO LOGO SCREEN */
+.intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+}
+
+.intro img {
+    width: 200px;
+    animation: zoomIn 2s ease forwards;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.3); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Hide main content initially */
+#mainContent {
+    display: none;
+}
