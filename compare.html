@@ -19,12 +19,12 @@
     </nav>
 </header>
 
-<h2 class="title">Compare Cars</h2>
+<h2 class="title"> COMPARE CARS </h2>
 
 <div class="filter-form">
     <select id="car1"></select>
     <select id="car2"></select>
-    <button onclick="compare()">Compare</button>
+    <button onclick="compare()"> COMPARE </button>
 </div>
 
 <table class="compare-table" id="compareTable"></table>
@@ -41,7 +41,7 @@ fetch("data/cars.json")
 
 function loadSelects(cars){
     let html = `<option value="">Select Car</option>`;
-    cars.forEach(c => html += `<option value="${c.id}">${c.car_name}</option>`);
+    cars.forEach(c => html += `<option value="${c.ID}">${c.CAR_NAME}</option>`);
     document.getElementById("car1").innerHTML = html;
     document.getElementById("car2").innerHTML = html;
 }
@@ -50,15 +50,15 @@ function compare(){
     let id1 = document.getElementById("car1").value;
     let id2 = document.getElementById("car2").value;
 
-    let c1 = carsData.find(c => c.id == id1);
-    let c2 = carsData.find(c => c.id == id2);
+    let c1 = carsData.find(c => c.ID == id1);
+    let c2 = carsData.find(c => c.ID == id2);
 
     if(!c1 || !c2) return;
 
-    let html = `<tr><th>Spec</th><th>${c1.car_name}</th><th>${c2.car_name}</th></tr>`;
+    let html = `<tr><th> SPECIFICATIONS </th><th>${c1.CAR_NAME}</th><th>${c2.CAR_NAME}</th></tr>`;
 
     for(let key in c1){
-        if(key !== "id" && key !== "image"){
+        if(key !== "ID" && key !== "IMAGE"){
             html += `<tr>
                 <td>${key.replace(/_/g,' ')}</td>
                 <td>${c1[key]}</td>
@@ -67,7 +67,7 @@ function compare(){
         }
     }
 
-    document.getElementById("compareTable").innerHTML = html;
+    document.getElementById(" COMPARE TABLE ").innerHTML = html;
 }
 </script>
 
