@@ -122,12 +122,18 @@ body {
 }
 
 .intro img {
-    width: 90vw;      /* full screen width */
+    width: 90vw;
     max-width: 500px;
     height: auto;
-    padding: 20px;
+    padding: 25px;
     background: #000;
-    border-radius: 15px;
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 40px rgba(56,189,248,0.8),
+        0 0 80px rgba(56,189,248,0.6),
+        0 0 120px rgba(56,189,248,0.4);
+
     animation: zoomIn 2s ease forwards;
 }
 
