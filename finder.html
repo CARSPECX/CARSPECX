@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Finder | CARSPECX</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="static/images/CARSPECX.png" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="finder.html">Car Finder</a>
+        <a href="recommend.html">Recommend</a>
+        <a href="compare.html">Compare</a>
+        <a href="emi.html">EMI</a>
+    </nav>
+</header>
+
+<h2 class="title">Find Your Car</h2>
+
+<div class="filter-form">
+    <select id="brand"></select>
+    <select id="fuel">
+        <option value="">Fuel</option>
+        <option>Petrol</option>
+        <option>Diesel</option>
+        <option>Electric</option>
+    </select>
+    <select id="transmission">
+        <option value="">Transmission</option>
+        <option>Manual</option>
+        <option>Automatic</option>
+    </select>
+    <input type="number" id="maxPrice" placeholder="Max Price">
+    <button onclick="filterCars()">Search</button>
+</div>
+
+<div class="car-grid" id="carList"></div>
+
+<script>
+let allCars = [];
+
+fetch("data/cars.json")
+.then(res => res.json())
+.then(cars => {
+    allCars = cars;
+    loadBrands(cars);
+    showCars(cars);
+});
+
+function loadBrands(cars){
+    let brands = [...new Set(cars.map(c => c.brand))];
+    let html = `<option value="">Brand</option>`;
+    brands.forEach(b => html += `<option>${b}</option>`);
+    document.getElementById("brand").innerHTML = html;
+}
+
+function showCars(cars){
+    let html = "";
+    cars.forEach(car => {
+        html += `
+        <div class="car-card">
+            <img src="static/images/${car.image}">
+            <h3>${car.car_name}</h3>
+            <p>${car.brand}</p>
+            <p>₹${car.price}</p>
+            <a href="details.html?id=${car.id}" class="btn">View</a>
+        </div>`;
+    });
+    document.getElementById("carList").innerHTML = html;
+}
+
+function filterCars(){
+    let brand = document.getElementById("brand").value;
+    let fuel = document.getElementById("fuel").value;
+    let trans = document.getElementById("transmission").value;
+    let maxPrice = document.getElementById("maxPrice").value;
+
+    let filtered = allCars.filter(c =>
+        (brand=="" || c.brand==brand) &&
+        (fuel=="" || c.fuel_type==fuel) &&
+        (trans=="" || c.transmission==trans) &&
+        (maxPrice=="" || c.price <= maxPrice)
+    );
+
+    showCars(filtered);
+}
+</script>
+
+</body>
+</html></body>
+</html>
