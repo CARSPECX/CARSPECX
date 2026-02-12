@@ -44,11 +44,11 @@ fetch("data/cars.json")
     cars.forEach(car => {
         html += `
         <div class="car-card">
-            <img src="static/images/${car.image}">
-            <h3>${car.car_name}</h3>
-            <p>${car.brand}</p>
-            <p>₹${car.price}</p>
-            <a href="details.html?id=${car.id}" class="btn">View Details</a>
+            <img src="static/images/${car.IMAGE}">
+            <h3>${car.CAR_NAME}</h3>
+            <p>${car.BRAND}</p>
+            <p>${formatPrice(car.PRICE)}</p>
+            <a href="details.html?id=${car.ID}" class="btn">View Details</a>
         </div>`;
     });
     document.getElementById("carList").innerHTML = html;
