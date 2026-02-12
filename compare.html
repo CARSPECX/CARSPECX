@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Cars | CARSPECX</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="static/images/CARSPECX.png" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="finder.html">Car Finder</a>
+        <a href="recommend.html">Recommend</a>
+        <a href="compare.html">Compare</a>
+        <a href="emi.html">EMI</a>
+    </nav>
+</header>
+
+<h2 class="title">Compare Cars</h2>
+
+<div class="filter-form">
+    <select id="car1"></select>
+    <select id="car2"></select>
+    <button onclick="compare()">Compare</button>
+</div>
+
+<table class="compare-table" id="compareTable"></table>
+
+<script>
+let carsData = [];
+
+fetch("data/cars.json")
+.then(res => res.json())
+.then(cars => {
+    carsData = cars;
+    loadSelects(cars);
+});
+
+function loadSelects(cars){
+    let html = `<option value="">Select Car</option>`;
+    cars.forEach(c => html += `<option value="${c.id}">${c.car_name}</option>`);
+    document.getElementById("car1").innerHTML = html;
+    document.getElementById("car2").innerHTML = html;
+}
+
+function compare(){
+    let id1 = document.getElementById("car1").value;
+    let id2 = document.getElementById("car2").value;
+
+    let c1 = carsData.find(c => c.id == id1);
+    let c2 = carsData.find(c => c.id == id2);
+
+    if(!c1 || !c2) return;
+
+    let html = `<tr><th>Spec</th><th>${c1.car_name}</th><th>${c2.car_name}</th></tr>`;
+
+    for(let key in c1){
+        if(key !== "id" && key !== "image"){
+            html += `<tr>
+                <td>${key.replace(/_/g,' ')}</td>
+                <td>${c1[key]}</td>
+                <td>${c2[key]}</td>
+            </tr>`;
+        }
+    }
+
+    document.getElementById("compareTable").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
