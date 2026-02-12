@@ -127,7 +127,7 @@ body {
     padding: 25px;
     background: #000;
     border-radius: 20px;
-    animation: zoomIn 2s ease forwards;
+    animation: zoomIn 4s ease forwards;
 }
 
 @keyframes zoomIn {
