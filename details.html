@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Details | CARSPECX</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="static/images/CARSPECX.png" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="finder.html">Car Finder</a>
+        <a href="recommend.html">Recommend</a>
+        <a href="compare.html">Compare</a>
+        <a href="emi.html">EMI</a>
+    </nav>
+</header>
+
+<h2 class="title">Car Specifications</h2>
+
+<table class="details-table" id="detailsTable"></table>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const carId = params.get("id");
+
+fetch("data/cars.json")
+.then(res => res.json())
+.then(cars => {
+    const car = cars.find(c => c.id == carId);
+    if(!car) return;
+
+    let html = "";
+    for (let key in car) {
+        if (key !== "image" && key !== "id") {
+            html += `<tr><th>${key.replace(/_/g,' ')}</th><td>${car[key]}</td></tr>`;
+        }
+    }
+    document.getElementById("detailsTable").innerHTML = html;
+});
+</script>
+
+</body>
+</html>
