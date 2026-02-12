@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Recommendation | CARSPECX</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <img src="static/images/CARSPECX.png" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="finder.html">Car Finder</a>
+        <a href="recommend.html">Recommend</a>
+        <a href="compare.html">Compare</a>
+        <a href="emi.html">EMI</a>
+    </nav>
+</header>
+
+<h2 class="title">Smart Recommendation</h2>
+
+<div class="filter-form">
+    <input type="number" id="budget" placeholder="Your Budget">
+    <select id="fuel">
+        <option value="">Fuel</option>
+        <option>Petrol</option>
+        <option>Diesel</option>
+        <option>Electric</option>
+    </select>
+    <select id="transmission">
+        <option value="">Transmission</option>
+        <option>Manual</option>
+        <option>Automatic</option>
+    </select>
+    <select id="safety">
+        <option value="">Min Safety Rating</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+    <button onclick="recommend()">Recommend</button>
+</div>
+
+<div class="car-grid" id="carList"></div>
+
+<script>
+let carsData = [];
+
+fetch("data/cars.json")
+.then(res => res.json())
+.then(cars => carsData = cars);
+
+function recommend(){
+    let budget = document.getElementById("budget").value;
+    let fuel = document.getElementById("fuel").value;
+    let trans = document.getElementById("transmission").value;
+    let safety = document.getElementById("safety").value;
+
+    let scored = carsData.map(c => {
+        let score = 0;
+        if(budget && c.price <= budget) score += 3;
+        if(fuel && c.fuel_type == fuel) score += 2;
+        if(trans && c.transmission == trans) score += 2;
+        if(safety && c.safety_rating >= safety) score += 3;
+        return {...c, score};
+    });
+
+    scored.sort((a,b) => b.score - a.score);
+    showCars(scored.slice(0,5));
+}
+
+function showCars(cars){
+    let html = "";
+    cars.forEach(car => {
+        html += `
+        <div class="car-card">
+            <img src="static/images/${car.image}">
+            <h3>${car.car_name}</h3>
+            <p>${car.brand}</p>
+            <p>₹${car.price}</p>
+            <p>Score: ${car.score}</p>
+            <a href="details.html?id=${car.id}" class="btn">View</a>
+        </div>`;
+    });
+    document.getElementById("carList").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
