@@ -25,17 +25,19 @@
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const carId = params.get("id");
+const carId = parseInt(params.get("id")); // Convert to number
 
 fetch("data/cars.json")
 .then(res => res.json())
 .then(cars => {
-    const car = cars.find(c => c.id == carId);
+    // Use uppercase key ID to match your JSON
+    const car = cars.find(c => c.ID === carId);
     if(!car) return;
 
     let html = "";
     for (let key in car) {
-        if (key !== "image" && key !== "id") {
+        // Use uppercase IMAGE to match JSON, and exclude ID
+        if (key !== "IMAGE" && key !== "ID") {
             html += `<tr><th>${key.replace(/_/g,' ')}</th><td>${car[key]}</td></tr>`;
         }
     }
