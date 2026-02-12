@@ -11,7 +11,7 @@ fetch("data/cars.json")
 
 // Utility: get car by ID
 function getCarById(id){
-    return CARS.find(c => c.id == id);
+    return CARS.find(c => c.ID == id);
 }
 
 // Utility: format price
