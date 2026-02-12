@@ -112,15 +112,22 @@ body {
 }
 /* INTRO LOGO SCREEN */
 .intro {
+    position: fixed;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background: #000;
+    z-index: 9999;
 }
 
 .intro img {
-    width: 200px;
+    width: 90vw;      /* full screen width */
+    max-width: 500px;
+    height: auto;
+    padding: 20px;
+    background: #000;
+    border-radius: 15px;
     animation: zoomIn 2s ease forwards;
 }
 
