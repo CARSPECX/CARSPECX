@@ -30,7 +30,6 @@
 <table class="compare-table" id="compareTable"></table>
 
 <script>
-<script>
 let carsData = [];
 
 fetch("data/cars.json")
@@ -42,7 +41,6 @@ fetch("data/cars.json")
 
 function loadSelects(cars){
     let html = `<option value="">Select Car</option>`;
-    // Use uppercase keys CAR_NAME and ID
     cars.forEach(c => html += `<option value="${c.ID}">${c.CAR_NAME}</option>`);
     document.getElementById("car1").innerHTML = html;
     document.getElementById("car2").innerHTML = html;
@@ -52,7 +50,6 @@ function compare(){
     let id1 = parseInt(document.getElementById("car1").value);
     let id2 = parseInt(document.getElementById("car2").value);
 
-    // Use uppercase ID
     let c1 = carsData.find(c => c.ID === id1);
     let c2 = carsData.find(c => c.ID === id2);
 
@@ -70,7 +67,6 @@ function compare(){
         }
     }
 
-    // Fix typo: compareTable
     document.getElementById("compareTable").innerHTML = html;
 }
 </script>
