@@ -43,24 +43,38 @@ fetch("CARS.json")
 .then(cars => {
     const car = cars.find(c => c.id === carId);
     if(!car){
-        alert("Car not found!");
+        document.getElementById("detailsTable").innerHTML =
+        "<tr><td>Car not found</td></tr>";
         return;
     }
 
-    // Show image
+    // Set image
     document.getElementById("carImage").src = "static/images/" + car.image;
 
     let html = "";
     for (let key in car) {
         if (key !== "image" && key !== "id") {
+            let value = car[key];
+
+            // format price directly
+            if(key === "price"){
+                value = "₹" + Number(value).toLocaleString();
+            }
+
             html += `
-            <tr>
+              <tr>
                 <th>${key.replace(/_/g,' ')}</th>
-                <td>${key === "price" ? formatPrice(car[key]) : car[key]}</td>
-            </tr>`;
+                <td>${value}</td>
+              </tr>`;
         }
     }
+
     document.getElementById("detailsTable").innerHTML = html;
+})
+.catch(err => {
+    console.error(err);
+    document.getElementById("detailsTable").innerHTML =
+    "<tr><td>Error loading data</td></tr>";
 });
 </script>
 </body>
