@@ -53,10 +53,10 @@ fetch("data/cars.json")
 .then(cars => carsData = cars);
 
 function recommend(){
-    let budget = document.getElementById("budget").value;
+    let budget = Number(document.getElementById("budget").value);
     let fuel = document.getElementById("fuel").value;
     let trans = document.getElementById("transmission").value;
-    let safety = document.getElementById("safety").value;
+    let safety = Number(document.getElementById("safety").value);
 
     let scored = carsData.map(c => {
         let score = 0;
@@ -76,7 +76,7 @@ function showCars(cars){
     cars.forEach(car => {
         html += `
         <div class="car-card">
-            <img src="static/images/${car.IMAGE}">
+            <img src="static/images/${car.image}">
             <h3>${car.car_name}</h3>
             <p>${car.brand}</p>
             <p>${formatPrice(car.price)}</p>
