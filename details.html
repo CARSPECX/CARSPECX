@@ -32,7 +32,7 @@
 const params = new URLSearchParams(window.location.search);
 const carId = parseInt(params.get("id")); // Convert to number
 
-fetch("data/cars.json")
+fetch("cars.json")
   .then(res => res.json())
   .then(cars => {
       const car = cars.find(c => c.id === carId);
