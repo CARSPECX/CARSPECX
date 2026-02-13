@@ -21,49 +21,47 @@
 
 <h2 class="title">Car Specifications</h2>
 
+<div style="text-align:center; margin:15px;">
+    <img id="carImage" src="" alt="Car Image" style="
+        width: 90%;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    ">
+</div>
+
 <div style="overflow-x:auto;">
   <table class="details-table" id="detailsTable"></table>
 </div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const carId = params.get("id");
+const carId = parseInt(params.get("id"));
 
 fetch("CARS.json")
-.then(res => {
-    if(!res.ok) throw new Error("CARS.json not found");
-    return res.json();
-})
+.then(res => res.json())
 .then(cars => {
-    const car = cars.find(c => String(c.id) === String(carId));
+    const car = cars.find(c => c.id === carId);
     if(!car){
-        document.getElementById("detailsTable").innerHTML =
-          "<tr><td>Car not found</td></tr>";
+        alert("Car not found!");
         return;
     }
+
+    // Show image
+    document.getElementById("carImage").src = "static/images/" + car.image;
 
     let html = "";
     for (let key in car) {
         if (key !== "image" && key !== "id") {
-            let value = key === "price"
-                ? "₹" + Number(car[key]).toLocaleString()
-                : car[key];
-
             html += `
             <tr>
-                <th>${key.replace(/_/g,' ').toUpperCase()}</th>
-                <td>${value}</td>
+                <th>${key.replace(/_/g,' ')}</th>
+                <td>${key === "price" ? formatPrice(car[key]) : car[key]}</td>
             </tr>`;
         }
     }
     document.getElementById("detailsTable").innerHTML = html;
-})
-.catch(err => {
-    document.getElementById("detailsTable").innerHTML =
-      "<tr><td style='color:red;'>Failed to load car data</td></tr>";
-    console.error(err);
 });
 </script>
-
 </body>
 </html>
