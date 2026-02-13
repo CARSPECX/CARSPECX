@@ -28,41 +28,57 @@
 </div>
 
 <table class="compare-table" id="compareTable"></table>
-<script src="app.js"></script>
+
 <script>
 let carsData = [];
 
 fetch("CARS.json")
-.then(res => res.json())
+.then(res => {
+    if(!res.ok) throw new Error("cars.json not found");
+    return res.json();
+})
 .then(cars => {
     carsData = cars;
     loadSelects(cars);
-});
+})
+.catch(err => console.error(err));
 
 function loadSelects(cars){
-    let html = `<option value="">Select Car</option>`;
-    cars.forEach(c => html += `<option value="${c.id}">${c.car_name}</option>`);
+    let html = `<option value="">SELECT CAR</option>`;
+    cars.forEach(c => {
+        html += `<option value="${c.id}">${c.car_name}</option>`;
+    });
     document.getElementById("car1").innerHTML = html;
     document.getElementById("car2").innerHTML = html;
 }
 
 function compare(){
-    let id1 = Number(document.getElementById("car1").value);
-    let id2 = Number(document.getElementById("car2").value);
+    let id1 = document.getElementById("car1").value;
+    let id2 = document.getElementById("car2").value;
 
-    let c1 = carsData.find(c => c.id === id1);
-    let c2 = carsData.find(c => c.id === id2);
+    let c1 = carsData.find(c => String(c.id) === String(id1));
+    let c2 = carsData.find(c => String(c.id) === String(id2));
 
-    if(!c1 || !c2) return;
+    if(!c1 || !c2){
+        document.getElementById("compareTable").innerHTML =
+          "<tr><td>Please select two cars</td></tr>";
+        return;
+    }
 
-    let html = `<tr><th>SPECIFICATIONS</th><th>${c1.car_name}</th><th>${c2.car_name}</th></tr>`;
+    let html = `
+      <tr>
+        <th>SPECIFICATIONS</th>
+        <th>${c1.car_name}</th>
+        <th>${c2.car_name}</th>
+      </tr>`;
 
     for(let key in c1){
         if(key !== "id" && key !== "image"){
-            html += `<tr>
-                <td>${key.replace(/_/g,' ')}</td>
-                <td>${key === "price" ? formatPrice(c1[key]) : c1[key]}</td>
-                <td>${key === "price" ? formatPrice(c2[key]) : c2[key]}</td>
+            html += `
+            <tr>
+                <td>${key.replace(/_/g,' ').toUpperCase()}</td>
+                <td>${key==="price" ? "₹"+Number(c1[key]).toLocaleString() : c1[key]}</td>
+                <td>${key==="price" ? "₹"+Number(c2[key]).toLocaleString() : c2[key]}</td>
             </tr>`;
         }
     }
