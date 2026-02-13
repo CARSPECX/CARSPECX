@@ -47,8 +47,8 @@ function loadSelects(cars){
 }
 
 function compare(){
-    let id1 = document.getElementById("car1").value;
-    let id2 = document.getElementById("car2").value;
+    let id1 = Number(document.getElementById("car1").value);
+    let id2 = Number(document.getElementById("car2").value);
 
     let c1 = carsData.find(c => c.id === id1);
     let c2 = carsData.find(c => c.id === id2);
@@ -61,8 +61,8 @@ function compare(){
         if(key !== "id" && key !== "image"){
             html += `<tr>
                 <td>${key.replace(/_/g,' ')}</td>
-                <td>${c1[key]}</td>
-                <td>${c2[key]}</td>
+                <td>${key === "price" ? formatPrice(c1[key]) : c1[key]}</td>
+                <td>${key === "price" ? formatPrice(c2[key]) : c2[key]}</td>
             </tr>`;
         }
     }
