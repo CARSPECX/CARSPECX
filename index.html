@@ -37,46 +37,27 @@ fetch("CARS.json")
       if (!res.ok) throw new Error("HTTP error " + res.status);
       return res.json();
   })
-  .then(cars => {
+  .then(CARS => {
       let html = "";
-      cars.forEach(car => {
+      CARS.forEach(CARS => {
           html += `
           <div class="car-card">
-              <img src="static/images/${car.image}" alt="${car.car_name}">
-              <h3>${car.car_name}</h3>
-              <p><b>Brand:</b> ${car.brand}</p>
-              <p><b>Price:</b> ${formatPrice(car.price)}</p>
-              <p><b>Fuel:</b> ${car.fuel_type}</p>
-              <p><b>Transmission:</b> ${car.transmission}</p>
-              <a href="details.html?id=${car.id}" class="btn">View Details</a>
+              <img src="static/images/${CARS.image}" alt="${CARS.car_name}">
+              <h3>${CARS.car_name}</h3>
+              <p><b>Brand:</b> ${CARS.brand}</p>
+              <p><b>Price:</b> ${formatPrice(CARS.price)}</p>
+              <p><b>Fuel:</b> ${CARS.fuel_type}</p>
+              <p><b>Transmission:</b> ${CARS.transmission}</p>
+              <a href="details.html?id=${CARS.id}" class="btn">View Details</a>
           </div>`;
       });
       document.getElementById("carList").innerHTML = html;
-      console.log("Cars displayed:", cars.length);
+      console.log("Cars displayed:", CARS.length);
   })
   .catch(err => {
       console.error("Failed to load cars.json:", err);
       document.getElementById("carList").innerHTML = "<p style='color:red;text-align:center;'>Failed to load car data. Check console for details.</p>";
   });
 </script>
-
-</body>
-</html>    cars.forEach(car => {
-        html += `
-        <div class="car-card">
-            <img src="static/images/${car.image}">
-            <h3>${car.car_name}</h3>
-            <p><b>Brand:</b> ${car.brand}</p>
-            <p><b>Price:</b> ₹${car.price}</p>
-            <p><b>Fuel:</b> ${car.fuel_type}</p>
-            <p><b>Transmission:</b> ${car.transmission}</p>
-            <p><b>Price:</b> ${formatPrice(car.price)}</p>
-            <a href="details.html?id=${car.id}" class="btn">View Details</a>
-        </div>`;
-    });
-    document.getElementById("carList").innerHTML = html;
-});
-</script>
-
 </body>
 </html>
