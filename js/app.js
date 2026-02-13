@@ -8,7 +8,7 @@ fetch("data/cars.json")
       CARS = data;
       console.log("Cars loaded:", CARS.length);
   });
-
+.catch(err => console.error("Failed to load cars.json:", err));
 // Utility: get car by ID
 function getCarById(id){
     return CARS.find(c => c.id == id);
