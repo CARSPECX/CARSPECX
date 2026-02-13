@@ -30,7 +30,7 @@
 
 
 <script>
-fetch("cars.json")
+fetch("data/cars.json")
 .then(res => res.json())
 .then(cars => {
     let html = "";
@@ -49,11 +49,6 @@ fetch("cars.json")
     });
     document.getElementById("carList").innerHTML = html;
 });
-
-setTimeout(() => {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-}, 5000);
 </script>
 
 </body>
