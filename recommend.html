@@ -47,24 +47,23 @@
 
 <script>
 let carsData = [];
-let carsData = [];
 
 fetch("data/cars.json")
 .then(res => res.json())
 .then(cars => carsData = cars);
 
 function recommend(){
-    let budget = parseFloat(document.getElementById("budget").value);
+    let budget = document.getElementById("budget").value;
     let fuel = document.getElementById("fuel").value;
     let trans = document.getElementById("transmission").value;
-    let safety = parseInt(document.getElementById("safety").value);
+    let safety = document.getElementById("safety").value;
 
     let scored = carsData.map(c => {
         let score = 0;
-        if(budget && c.PRICE <= budget) score += 3;
-        if(fuel && c.FUEL_TYPE == fuel) score += 2;
-        if(trans && c.TRANSMISSION == trans) score += 2;
-        if(safety && c.SAFETY_RATING >= safety) score += 3;
+        if(budget && c.price <= budget) score += 3;
+        if(fuel && c.fuel_type == fuel) score += 2;
+        if(trans && c.transmission == trans) score += 2;
+        if(safety && c.safety_rating >= safety) score += 3;
         return {...c, score};
     });
 
@@ -78,11 +77,11 @@ function showCars(cars){
         html += `
         <div class="car-card">
             <img src="static/images/${car.IMAGE}">
-            <h3>${car.CAR_NAME}</h3>
-            <p>${car.BRAND}</p>
-            <p>${formatPrice(car.PRICE)}</p>
+            <h3>${car.car_name}</h3>
+            <p>${car.brand}</p>
+            <p>${formatPrice(car.price)}</p>
             <p>Score: ${car.score}</p>
-            <a href="details.html?id=${car.ID}" class="btn">View</a>
+            <a href="details.html?id=${car.id}" class="btn">View</a>
         </div>`;
     });
     document.getElementById("carList").innerHTML = html;
