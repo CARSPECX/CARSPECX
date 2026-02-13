@@ -2,7 +2,7 @@
 let CARS = [];
 
 // Fetch cars once
-fetch("data/cars.json")
+fetch("./CARS.json")
   .then(res => res.json())
   .then(data => {
       CARS = data;
