@@ -21,6 +21,11 @@
 
 <h2 class="title"> COMPARE CARS </h2>
 
+<div style="display:flex;justify-content:center;gap:20px;margin-bottom:15px;">
+    <img id="img1" src="" style="height:140px;display:none;border-radius:8px;">
+    <img id="img2" src="" style="height:140px;display:none;border-radius:8px;">
+</div>
+    
 <div class="filter-form">
     <select id="car1"></select>
     <select id="car2"></select>
@@ -32,22 +37,16 @@
 <script>
 let carsData = [];
 
-fetch("CARS.json")
-.then(res => {
-    if(!res.ok) throw new Error("cars.json not found");
-    return res.json();
-})
+fetch("data/cars.json")
+.then(res => res.json())
 .then(cars => {
     carsData = cars;
     loadSelects(cars);
-})
-.catch(err => console.error(err));
+});
 
 function loadSelects(cars){
-    let html = `<option value="">SELECT CAR</option>`;
-    cars.forEach(c => {
-        html += `<option value="${c.id}">${c.car_name}</option>`;
-    });
+    let html = `<option value="">Select Car</option>`;
+    cars.forEach(c => html += `<option value="${c.id}">${c.car_name}</option>`);
     document.getElementById("car1").innerHTML = html;
     document.getElementById("car2").innerHTML = html;
 }
@@ -56,29 +55,29 @@ function compare(){
     let id1 = document.getElementById("car1").value;
     let id2 = document.getElementById("car2").value;
 
-    let c1 = carsData.find(c => String(c.id) === String(id1));
-    let c2 = carsData.find(c => String(c.id) === String(id2));
+    let c1 = carsData.find(c => c.id == id1);
+    let c2 = carsData.find(c => c.id == id2);
 
-    if(!c1 || !c2){
-        document.getElementById("compareTable").innerHTML =
-          "<tr><td>Please select two cars</td></tr>";
-        return;
-    }
+    if(!c1 || !c2) return;
 
-    let html = `
-      <tr>
+    // 🔹 Show images
+    document.getElementById("img1").src = "static/images/" + c1.image;
+    document.getElementById("img2").src = "static/images/" + c2.image;
+    document.getElementById("img1").style.display = "block";
+    document.getElementById("img2").style.display = "block";
+
+    let html = `<tr>
         <th>SPECIFICATIONS</th>
         <th>${c1.car_name}</th>
         <th>${c2.car_name}</th>
-      </tr>`;
+    </tr>`;
 
     for(let key in c1){
         if(key !== "id" && key !== "image"){
-            html += `
-            <tr>
-                <td>${key.replace(/_/g,' ').toUpperCase()}</td>
-                <td>${key==="price" ? "₹"+Number(c1[key]).toLocaleString() : c1[key]}</td>
-                <td>${key==="price" ? "₹"+Number(c2[key]).toLocaleString() : c2[key]}</td>
+            html += `<tr>
+                <td>${key.replace(/_/g,' ')}</td>
+                <td>${c1[key]}</td>
+                <td>${c2[key]}</td>
             </tr>`;
         }
     }
