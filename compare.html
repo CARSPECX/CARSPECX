@@ -28,11 +28,11 @@
 </div>
 
 <table class="compare-table" id="compareTable"></table>
-
+<script src="app.js"></script>
 <script>
 let carsData = [];
 
-fetch("./CARS.json")
+fetch("CARS.json")
 .then(res => res.json())
 .then(cars => {
     carsData = cars;
