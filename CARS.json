@@ -21,7 +21,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "bmw_3series.jpg"
+    "image": "bmw_3series.png"
   },
   {
     "id": 2,
@@ -45,7 +45,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "bmw_x5.jpg"
+    "image": "bmw_x5.png"
   },
   {
     "id": 3,
@@ -69,7 +69,7 @@
     "brakes": "Regenerative + ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "bmw_i4.jpg"
+    "image": "bmw_i4.png"
   },
   {
     "id": 4,
@@ -93,7 +93,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "mercedes_cclass.jpg"
+    "image": "mercedes_cclass.png"
   },
   {
     "id": 5,
@@ -117,7 +117,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "mercedes_eclass.jpg"
+    "image": "mercedes_eclass.png"
   },
   {
     "id": 6,
@@ -141,7 +141,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "mercedes_gla.jpg"
+    "image": "mercedes_gla.png"
   },
   {
     "id": 7,
@@ -165,7 +165,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "honda_amaze.jpg"
+    "image": "honda_amaze.png"
   },
   {
     "id": 8,
@@ -189,7 +189,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "honda_city.jpg"
+    "image": "honda_city.png"
   },
   {
     "id": 9,
@@ -213,7 +213,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "honda_elevate.jpg"
+    "image": "honda_elevate.png"
   },
   {
     "id": 10,
@@ -237,7 +237,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "skoda_slavia.jpg"
+    "image": "skoda_slavia.png"
   },
   {
     "id": 11,
@@ -261,7 +261,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "skoda_octavia_rs.jpg"
+    "image": "skoda_octavia_rs.png"
   },
   {
     "id": 12,
@@ -285,7 +285,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "toyota_camry.jpg"
+    "image": "toyota_camry.png"
   },
   {
     "id": 13,
@@ -309,7 +309,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 100,000km",
-    "image": "toyota_innova_crysta.jpg"
+    "image": "toyota_innova_crysta.png"
   },
   {
     "id": 14,
@@ -333,7 +333,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "toyota_hyryder.jpg"
+    "image": "toyota_hyryder.png"
   },
   {
     "id": 15,
@@ -357,7 +357,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "toyota_vellfire.jpg"
+    "image": "toyota_vellfire.png"
   },
   {
     "id": 16,
@@ -381,7 +381,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "toyota_land_cruiser.jpg"
+    "image": "toyota_land_cruiser.png"
   },
   {
     "id": 17,
@@ -405,7 +405,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "volkswagen_virtus.jpg"
+    "image": "volkswagen_virtus.png"
   },
   {
     "id": 18,
@@ -429,7 +429,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "volkswagen_taigun.jpg"
+    "image": "volkswagen_taigun.png"
   },
   {
     "id": 19,
@@ -453,7 +453,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "volkswagen_tiguan_rline.jpg"
+    "image": "volkswagen_tiguan_rline.png"
   },
   {
     "id": 20,
@@ -477,7 +477,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "volkswagen_golf_gti.jpg"
+    "image": "volkswagen_golf_gti.png"
   },
   {
     "id": 21,
@@ -501,7 +501,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 100,000km",
-    "image": "landrover_defender.jpg"
+    "image": "landrover_defender.png"
   },
   {
     "id": 22,
@@ -525,7 +525,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 100,000km",
-    "image": "landrover_discovery.jpg"
+    "image": "landrover_discovery.png"
   },
   {
     "id": 23,
@@ -549,7 +549,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
-    "image": "jeep_wrangler.jpg"
+    "image": "jeep_wrangler.png"
   },
   {
     "id": 24,
@@ -573,7 +573,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 100,000km",
-    "image": "mahindra_thar.jpg"
+    "image": "mahindra_thar.png"
   },
   {
     "id": 25,
@@ -597,7 +597,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 100,000km",
-    "image": "mahindra_be6.jpg"
+    "image": "mahindra_be6.png"
   },
   {
     "id": 26,
@@ -621,7 +621,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
-    "image": "mahindra_xuv7xo.jpg"
+    "image": "mahindra_xuv7xo.png"
   },
   {
     "id": 27,
@@ -645,7 +645,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 80,000km",
-    "image": "volvo_xc90.jpg"
+    "image": "volvo_xc90.png"
   },
   {
     "id": 28,
@@ -669,7 +669,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 80,000km",
-    "image": "volvo_xc60.jpg"
+    "image": "volvo_xc60.png"
   },
   {
     "id": 29,
@@ -693,7 +693,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 80,000km",
-    "image": "jaguar_fpace.jpg"
+    "image": "jaguar_fpace.png"
   },
   {
     "id": 30,
@@ -717,7 +717,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "3yr / 50,000km",
-    "image": "maserati_granturismo.jpg"
+    "image": "maserati_granturismo.png"
   },
   {
     "id": 31,
@@ -741,7 +741,7 @@
     "brakes": "ABS",
     "gear_indicator": "Yes",
     "warranty": "4yr / 80,000km",
-    "image": "bentley_bentayga.jpg"
+    "image": "bentley_bentayga.png"
   },
  {
   "id": 32,
