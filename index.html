@@ -32,7 +32,7 @@
 
 <script>
 // Fetch and display cars
-fetch("data/cars.json")
+fetch("cars.json")
   .then(res => {
       if (!res.ok) throw new Error("HTTP error " + res.status);
       return res.json();
