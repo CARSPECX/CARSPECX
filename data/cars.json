@@ -190,10 +190,7 @@
     "gear_indicator": "Yes",
     "warranty": "3yr / 60,000km",
     "image": "honda_city.jpg"
-  }
-]
-
-[
+  },
   {
     "id": 9,
     "car_name": "Elevate",
@@ -385,10 +382,7 @@
     "gear_indicator": "Yes",
     "warranty": "4yr / 60,000km",
     "image": "toyota_land_cruiser.jpg"
-  }
-    ]
-
-[
+  },
   {
     "id": 17,
     "car_name": "Virtus",
@@ -580,10 +574,7 @@
     "gear_indicator": "Yes",
     "warranty": "3yr / 100,000km",
     "image": "mahindra_thar.jpg"
-  }
-]
-
-[
+  },
   {
     "id": 25,
     "car_name": "BE6",
