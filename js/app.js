@@ -1,17 +1,17 @@
 // Load all cars globally
-let CARS = [];
+let cars = [];
 
 // Fetch cars once
 fetch("data/cars.json")
   .then(res => res.json())
   .then(data => {
-      CARS = data;
-      console.log("Cars loaded:", CARS.length);
+      cars = data;
+      console.log("Cars loaded:", cars.length);
   });
 
 // Utility: get car by ID
 function getCarById(id){
-    return CARS.find(c => c.ID == id);
+    return cars.find(c => c.ID == id);
 }
 
 // Utility: format price
