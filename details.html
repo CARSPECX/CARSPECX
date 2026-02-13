@@ -29,9 +29,9 @@
 const params = new URLSearchParams(window.location.search);
 const carId = params.get("id");
 
-fetch("data/cars.json")
+fetch("CARS.json")
 .then(res => {
-    if(!res.ok) throw new Error("cars.json not found");
+    if(!res.ok) throw new Error("CARS.json not found");
     return res.json();
 })
 .then(cars => {
