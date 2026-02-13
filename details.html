@@ -25,16 +25,38 @@
   <table class="details-table" id="detailsTable"></table>
 </div>
 
+<!-- Include app.js for formatPrice -->
+<script src="app.js"></script>
+
 <script>
 const params = new URLSearchParams(window.location.search);
-const carId = params.get("id"); 
+const carId = parseInt(params.get("id")); // Convert to number
 
 fetch("data/cars.json")
-.then(res => res.json())
-.then(cars => {
-    const car = cars.find(c => c.id === carId);
-    if(!car) return;
+  .then(res => res.json())
+  .then(cars => {
+      const car = cars.find(c => c.id === carId);
+      if(!car) {
+          document.getElementById("detailsTable").innerHTML = "<tr><td colspan='2'>Car not found</td></tr>";
+          return;
+      }
 
+      let html = "";
+      for (let key in car) {
+          if (key !== "image" && key !== "id") {
+              html += `<tr>
+                          <th>${key.replace(/_/g,' ')}</th>
+                          <td>${key === "price" ? formatPrice(car[key]) : car[key]}</td>
+                       </tr>`;
+          }
+      }
+      document.getElementById("detailsTable").innerHTML = html;
+  })
+  .catch(err => console.error("Failed to load cars.json:", err));
+</script>
+
+</body>
+</html>
     let html = "";
     for (let key in car) {
         if (key !== "image" && key !== "id") {
