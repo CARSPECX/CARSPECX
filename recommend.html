@@ -44,11 +44,13 @@
 </div>
 
 <div class="car-grid" id="carList"></div>
+    
+<script src="app.js"></script>
 
 <script>
 let carsData = [];
 
-fetch("./CARS.json")
+fetch("CARS.json")
 .then(res => res.json())
 .then(cars => carsData = cars);
 
