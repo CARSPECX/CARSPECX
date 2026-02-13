@@ -45,16 +45,20 @@
 let allCars = [];
 
 fetch("CARS.json")
-.then(res => res.json())
+.then(res => {
+    if(!res.ok) throw new Error("cars.json not found");
+    return res.json();
+})
 .then(cars => {
     allCars = cars;
     loadBrands(cars);
     showCars(cars);
-});
+})
+.catch(err => console.error(err));
 
 function loadBrands(cars){
     let brands = [...new Set(cars.map(c => c.brand))];
-    let html = `<option value="">Brand</option>`;
+    let html = `<option value="">BRAND</option>`;
     brands.forEach(b => html += `<option>${b}</option>`);
     document.getElementById("brand").innerHTML = html;
 }
@@ -67,8 +71,8 @@ function showCars(cars){
             <img src="static/images/${car.image}">
             <h3>${car.car_name}</h3>
             <p>${car.brand}</p>
-            <p>${formatPrice(car.price)}</p>
-            <a href="details.html?id=${car.id}" class="btn">View</a>
+            <p>₹${Number(car.price).toLocaleString()}</p>
+            <a href="details.html?id=${car.id}" class="btn">VIEW</a>
         </div>`;
     });
     document.getElementById("carList").innerHTML = html;
@@ -81,10 +85,10 @@ function filterCars(){
     let maxPrice = document.getElementById("maxPrice").value;
 
     let filtered = allCars.filter(c =>
-        (brand=="" || c.brand==brand) &&
-        (fuel=="" || c.fuel_type==fuel) &&
-        (trans=="" || c.transmission==trans) &&
-        (maxPrice=="" || c.price <= maxPrice)
+        (brand==="" || c.brand===brand) &&
+        (fuel==="" || c.fuel_type===fuel) &&
+        (trans==="" || c.transmission===trans) &&
+        (maxPrice==="" || c.price <= maxPrice)
     );
 
     showCars(filtered);
