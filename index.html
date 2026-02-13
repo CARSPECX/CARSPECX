@@ -8,11 +8,11 @@
 </head>
 <body>
 
-<!-- MAIN CONTENT -->
+<!-- NAVBAR -->
 <header class="navbar">
     <div style="display:flex;align-items:center;">
         <img src="static/images/CARSPECX.png" class="logo">
-    <span style="color:white;font-weight:bold;font-size:20px;">CARSPECX</span>
+        <span style="color:white;font-weight:bold;font-size:20px;">CARSPECX</span>
     </div>
     <nav>
         <a href="index.html">Home</a>
@@ -27,14 +27,41 @@
 
 <div class="car-grid" id="carList"></div>
 
-
+<!-- Include app.js -->
+<script src="app.js"></script>
 
 <script>
+// Fetch and display cars
 fetch("data/cars.json")
-.then(res => res.json())
-.then(cars => {
-    let html = "";
-    cars.forEach(car => {
+  .then(res => {
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+      return res.json();
+  })
+  .then(cars => {
+      let html = "";
+      cars.forEach(car => {
+          html += `
+          <div class="car-card">
+              <img src="static/images/${car.image}" alt="${car.car_name}">
+              <h3>${car.car_name}</h3>
+              <p><b>Brand:</b> ${car.brand}</p>
+              <p><b>Price:</b> ${formatPrice(car.price)}</p>
+              <p><b>Fuel:</b> ${car.fuel_type}</p>
+              <p><b>Transmission:</b> ${car.transmission}</p>
+              <a href="details.html?id=${car.id}" class="btn">View Details</a>
+          </div>`;
+      });
+      document.getElementById("carList").innerHTML = html;
+      console.log("Cars displayed:", cars.length);
+  })
+  .catch(err => {
+      console.error("Failed to load cars.json:", err);
+      document.getElementById("carList").innerHTML = "<p style='color:red;text-align:center;'>Failed to load car data. Check console for details.</p>";
+  });
+</script>
+
+</body>
+</html>    cars.forEach(car => {
         html += `
         <div class="car-card">
             <img src="static/images/${car.image}">
