@@ -45,26 +45,28 @@
 
 <div class="car-grid" id="carList"></div>
     
-<script src="app.js"></script>
-
 <script>
 let carsData = [];
 
 fetch("CARS.json")
-.then(res => res.json())
-.then(cars => carsData = cars);
+.then(res => {
+    if(!res.ok) throw new Error("cars.json not found");
+    return res.json();
+})
+.then(cars => carsData = cars)
+.catch(err => console.error(err));
 
 function recommend(){
-    let budget = Number(document.getElementById("budget").value);
+    let budget = document.getElementById("budget").value;
     let fuel = document.getElementById("fuel").value;
     let trans = document.getElementById("transmission").value;
-    let safety = Number(document.getElementById("safety").value);
+    let safety = document.getElementById("safety").value;
 
     let scored = carsData.map(c => {
         let score = 0;
         if(budget && c.price <= budget) score += 3;
-        if(fuel && c.fuel_type == fuel) score += 2;
-        if(trans && c.transmission == trans) score += 2;
+        if(fuel && c.fuel_type === fuel) score += 2;
+        if(trans && c.transmission === trans) score += 2;
         if(safety && c.safety_rating >= safety) score += 3;
         return {...c, score};
     });
@@ -81,9 +83,9 @@ function showCars(cars){
             <img src="static/images/${car.image}">
             <h3>${car.car_name}</h3>
             <p>${car.brand}</p>
-            <p>${formatPrice(car.price)}</p>
-            <p>Score: ${car.score}</p>
-            <a href="details.html?id=${car.id}" class="btn">View</a>
+            <p>₹${Number(car.price).toLocaleString()}</p>
+            <p><b>Score:</b> ${car.score}</p>
+            <a href="details.html?id=${car.id}" class="btn">VIEW</a>
         </div>`;
     });
     document.getElementById("carList").innerHTML = html;
