@@ -28,23 +28,79 @@
     <button onclick="calcEMI()">Calculate EMI</button>
 </div>
 
+<select id="viewType">
+    <option value="month">Month Wise</option>
+    <option value="year">Year Wise</option>
+</select>
+
 <h3 class="title" id="result"></h3>
+
+<table class="details-table" id="emiTable"></table>
 
 <script>
 function calcEMI(){
-    let P = Number(document.getElementById("price").value);
-    let R = Number(document.getElementById("rate").value) / 12 / 100;
-    let N = Number(document.getElementById("years").value) * 12;
+    let P = parseFloat(document.getElementById("price").value);
+    let R = parseFloat(document.getElementById("rate").value) / 12 / 100;
+    let N = parseInt(document.getElementById("years").value) * 12;
+    let view = document.getElementById("viewType").value;
 
-    if (!P || !R || !N) {
-        document.getElementById("result").innerText = "Please fill all fields correctly!";
+    if(!P || !R || !N){
+        document.getElementById("result").innerText = "Please fill all fields!";
         return;
     }
 
-    let emi = (P * R * Math.pow(1+R, N)) / (Math.pow(1+R, N) - 1);
-    document.getElementById("result").innerText = "Monthly EMI: ₹" + emi.toFixed(2);
+    let emi = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+    document.getElementById("result").innerText =
+        "Monthly EMI: ₹" + emi.toFixed(2);
+
+    let balance = P;
+    let html = `<tr>
+        <th>${view == "month" ? "Month" : "Year"}</th>
+        <th>EMI</th>
+        <th>Interest</th>
+        <th>Principal</th>
+        <th>Balance</th>
+    </tr>`;
+
+    let yearCount = 1;
+    let totalInterest = 0;
+    let totalPrincipal = 0;
+
+    for(let i = 1; i <= N; i++){
+        let interest = balance * R;
+        let principal = emi - interest;
+        balance -= principal;
+
+        totalInterest += interest;
+        totalPrincipal += principal;
+
+        if(view == "month"){
+            html += `
+            <tr>
+                <td>${i}</td>
+                <td>₹${emi.toFixed(0)}</td>
+                <td>₹${interest.toFixed(0)}</td>
+                <td>₹${principal.toFixed(0)}</td>
+                <td>₹${balance > 0 ? balance.toFixed(0) : 0}</td>
+            </tr>`;
+        }
+
+        if(view == "year" && i % 12 == 0){
+            html += `
+            <tr>
+                <td>${yearCount++}</td>
+                <td>₹${(emi*12).toFixed(0)}</td>
+                <td>₹${totalInterest.toFixed(0)}</td>
+                <td>₹${totalPrincipal.toFixed(0)}</td>
+                <td>₹${balance > 0 ? balance.toFixed(0) : 0}</td>
+            </tr>`;
+            totalInterest = 0;
+            totalPrincipal = 0;
+        }
+    }
+
+    document.getElementById("emiTable").innerHTML = html;
 }
 </script>
-
 </body>
 </html>
