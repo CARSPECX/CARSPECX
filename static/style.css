@@ -37,9 +37,8 @@ body {
 
 .car-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    padding: 15px;
+    grid-template-columns: repeat(2, 1fr); 
+    padding: 10px;
 }
 
 .car-card {
@@ -54,7 +53,7 @@ body {
     width: 100%;
     height: auto;
     max-height: 180px;
-    object-fit: contain;   /* shows full image */
+    object-fit: contain; 
     background: #fff;
     border-radius: 6px;
 }
