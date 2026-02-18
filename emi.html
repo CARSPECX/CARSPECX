@@ -76,7 +76,7 @@ function calcEMI(){
 
         if(view == "month"){
             html += `
-            <tr>
+            <tr align="center">
                 <td>${i}</td>
                 <td>₹${emi.toFixed(0)}</td>
                 <td>₹${interest.toFixed(0)}</td>
@@ -87,7 +87,7 @@ function calcEMI(){
 
         if(view == "year" && i % 12 == 0){
             html += `
-            <tr>
+            <tr align="center">
                 <td>${yearCount++}</td>
                 <td>₹${(emi*12).toFixed(0)}</td>
                 <td>₹${totalInterest.toFixed(0)}</td>
