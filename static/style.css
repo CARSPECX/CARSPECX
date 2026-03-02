@@ -7,9 +7,9 @@ body {
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* left & right separation */
     background: #111;
-    padding: 10px 15px;
-    flex-wrap: wrap;
+    padding: 10px 20px;
 }
 
 .logo {
@@ -20,7 +20,7 @@ body {
 
 .navbar nav {
     display: flex;
-    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .navbar nav a {
@@ -112,10 +112,13 @@ body {
 
 @media (max-width: 600px) {
     .navbar {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     .navbar nav {
         justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
     }
 }
